@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<canvas id="canvas" style="border: 1px solid red; height: 1000px; width: 1000px"></canvas>-->
+<canvas id="canvas" style="border: 1px solid red" width="500" height="300"></canvas>
+<script>
+    class Circle {
+        x;
+        y;
+        radius;
+        constructor() {
+
+        }
+        createCircle(){
+            let canvas =document.getElementById('canvas')
+            let ctx = canvas.getContext('2d')
+            let color = this.getRandomColor()
+            ctx.beginPath();
+            ctx.arc(this.x, this.y,this.radius,0,2*Math.PI)
+            ctx.fillStyle = color
+            ctx.fill()
+            ctx.closePath()
+        }
+        getRadius(){
+            return this.radius
+        }
+
+        setRadius(radius){
+             this.radius = radius
+        }
+        setX(x){
+             this.x = x
+        }
+        setY(y){
+             this.y = y
+        }
+        getRandomHex(){
+            return Math.floor(Math.random()*255)
+        }
+        getRandomColor(){
+          let  red = this.getRandomHex()
+            let blue = this.getRandomHex()
+            let green = this.getRandomHex()
+            return "rgb(" + red + "," + blue + "," + green +")"
+        }
+        creatMultipleCircle() {
+            for (let i = 0; i < 20; i++) {
+                this.setRadius(Math.floor(Math.random()*80))
+                this.setX(Math.random()*500)
+                this.setY(Math.random()*300)
+                this.createCircle()
+            }
+        }
+
+
+    }
+
+    let cir = new Circle()
+    // let radius = Math.floor(Math.random()*80)
+
+    cir.creatMultipleCircle()
+
+
+
+</script>
+</body>
+</html>
